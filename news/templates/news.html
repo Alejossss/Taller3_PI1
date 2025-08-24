@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}News • Movie Reviews{% endblock %}
+
+{% block content %}
+  <!-- Encabezado -->
+  <section class="hero p-4 p-md-5 mb-5 shadow">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <div>
+        <h1 class="fw-bold mb-1">News</h1>
+        <p class="text-secondary mb-0">Updates and curiosities from around the world.</p>
+      </div>
+      <a href="{% url 'home' %}" class="btn btn-outline-light">
+        <i class="bi bi-house"></i> Home
+      </a>
+    </div>
+  </section>
+
+  <!-- Lista de noticias (sin imagen) -->
+  <div class="row row-cols-1 g-4">
+    {% for news in newss %}
+      <div class="col">
+        <div class="card shadow-sm bg-light text-dark">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start gap-3">
+              <h5 class="card-title fw-bold mb-1">{{ news.headline }}</h5>
+              <small class="text-muted">
+                <i class="bi bi-calendar-event me-1"></i>
+                {{ news.date }} {# o: {{ news.date|date:"d M Y" }} #}
+              </small>
+            </div>
+            <p class="card-text mb-0">{{ news.body }}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col">
+        <div class="alert alert-warning border-0">
+          <i class="bi bi-info-circle"></i> No news available yet.
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

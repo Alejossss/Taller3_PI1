@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}About • Movie Reviews{% endblock %}
+
+{% block content %}
+  <!-- HERO -->
+  <section class="hero p-5 mb-5 shadow">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <h1 class="fw-bold display-5 mb-2">
+          Movie Reviews <span class="fs-5 align-middle stack-badge ms-2">Django + Bootstrap</span>
+        </h1>
+        <p class="lead mb-3">
+          A simple movie catalog with search, images, and external links.
+          Here you will find what the project does, how it is built, and how to use it.
+        </p>
+        <div class="d-flex gap-2">
+          <a href="{% url 'home' %}" class="btn btn-primary">
+            <i class="bi bi-house"></i> Go to Home
+          </a>
+          <a href="#features" class="btn btn-outline-light">
+            <i class="bi bi-stars"></i> Caracteristics
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUMEN DEL PROYECTO -->
+  <section class="mb-5">
+    <h2 class="h4 mb-3"><i class="bi bi-film"></i> What is this project?</h2>
+    <p class="mb-1">
+      A practice web application to manage a movie list. 
+      Allows <strong>text search</strong>, displays <strong>movie posters</strong> stored in <code>MEDIA</code> 
+      and, if it exists, adds an external <strong>link</strong> (for example, a trailer or official website).
+    </p>
+  </section>
+
+  <!-- CARACTERÍSTICAS -->
+  <section id="features" class="mb-5">
+    <h2 class="h4 mb-3"><i class="bi bi-stars"></i> Caracteristics</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card bg-secondary-subtle h-100 text-dark">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-search"></i> Search</h5>
+            <p class="card-text">Simple form that filters by title/description and displays results in a grid of cards.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card bg-secondary-subtle h-100 text-dark">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-image"></i> Standardized images</h5>
+            <p class="card-text">Posters with consistent size to maintain proportions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card bg-secondary-subtle h-100 text-dark">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-link-45deg"></i> External links</h5>
+            <p class="card-text">If a movie has a <code>url</code>, a 'Movie Link' button is displayed to the external resource.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO USAR -->
+  <section class="mb-5">
+    <h2 class="h4 mb-3"><i class="bi bi-joystick"></i> How to Use</h2>
+    <ol class="mb-2">
+      <li>Type a term in <em>Search for Movie</em> and press <strong>Search</strong>.</li>
+      <li>Browse the results: title, description, and poster.</li>
+      <li>Click on <em>Movie Link</em> if you want to open the associated external link.</li>
+
+    </ol>
+  </section>
+
+  <!-- STACK TÉCNICO -->
+  <section class="mb-5">
+    <h2 class="h4 mb-3"><i class="bi bi-cpu"></i> Technical Stack</h2>
+    <div class="d-flex flex-wrap gap-2">
+      <span class="stack-badge">Django 4/5</span>
+      <span class="stack-badge">Python</span>
+      <span class="stack-badge">Bootstrap 5</span>
+      <span class="stack-badge">SQLite (dev)</span>
+      <span class="stack-badge">Pillow (images)</span>
+    </div>
+  </section>
+
+  <!-- CRÉDITOS -->
+  <section class="mb-4">
+    <h2 class="h4 mb-3"><i class="bi bi-people"></i> Credits</h2>
+    <p class="mb-1">Project made by <strong>{{ author|default:"Alejandro Jaramillo" }}</strong>.</p>
+  </section>
+  <footer class="pt-4 mt-4 border-top border-secondary text-secondary small">
+    © {{ year|default:2025 }} Movie Reviews.
+  </footer>
+{% endblock %}

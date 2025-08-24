@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Statistics • Movie Reviews{% endblock %}
+{% block content %}
+<section class="hero p-4 p-md-5 mb-5 shadow">
+  <h1 class="fw-bold mb-2">📊 Statistics</h1>
+  <p class="text-secondary mb-0">Amount of films per year and by first genre.</p>
+</section>
+
+<div class="row g-4">
+  <div class="col-12">
+    <div class="card bg-light text-dark shadow-sm">
+      <div class="card-body text-center">
+        <h3 class="card-title mb-4">Movies per Year</h3>
+        <img src="data:image/png;base64,{{ graphic_year }}" class="img-fluid rounded border" alt="Movies per year">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card bg-light text-dark shadow-sm">
+      <div class="card-body text-center">
+        <h3 class="card-title mb-4">Movies by Genre</h3>
+        <img src="data:image/png;base64,{{ graphic_genre }}" class="img-fluid rounded border" alt="Movies by genre">
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
