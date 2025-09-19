@@ -73,6 +73,12 @@
                     <i class="bi bi-bar-chart"></i> Statistics
                   </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link  {% if request.resolver_match.url_name == 'recommendations' %}active{% endif %}" href="{% url 'recommendations' %}">
+                        <i class="bi bi-magic"></i>Recommendations
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

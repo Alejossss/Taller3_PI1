@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Recommendations{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-3">Recommendation System</h1>
+  <p class="text-muted">Write a description. E.g.: <em>Second World War Movie</em></p>
+
+  <form method="post" class="mb-4">
+    {% csrf_token %}
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        name="prompt"
+        placeholder="Describe what you're interested in"
+        value="{{ query|default:'' }}"
+        required
+      />
+      <button class="btn btn-primary" type="submit">
+        <i class="bi bi-magic"></i> Recommend
+      </button>
+    </div>
+  </form>
+
+  {% if messages %}
+    <div class="mb-3">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-2">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if result %}
+    <!-- Centered card -->
+    <div class="row justify-content-center g-4">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm movie-card text-dark">
+          {% if result.poster_url %}
+            <img src="{{ result.poster_url }}" class="card-img-top poster" alt="{{ result.title }}">
+          {% elif result.image and result.image.url %}
+            <img src="{{ result.image.url }}" class="card-img-top poster" alt="{{ result.title }}">
+          {% elif result.image %}
+            <img src="{{ result.image }}" class="card-img-top poster" alt="{{ result.title }}">
+          {% else %}
+            <img src="{% static 'img/placeholder_poster.jpg' %}" class="card-img-top poster" alt="No image">
+          {% endif %}
+
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-truncate" title="{{ result.title }}">{{ result.title }}</h5>
+            {% if similarity %}
+              <span class="badge bg-secondary mb-2">Similarity: {{ similarity|floatformat:4 }}</span>
+            {% endif %}
+            <p class="card-text small mb-1">{{ result.description|default:"No description available." }}</p>
+            {% if result.genre %}
+              <p class="card-text mb-1"><strong>Genre:</strong> {{ result.genre }}</p>
+            {% endif %}
+            {% if result.year %}
+              <p class="card-text"><strong>Year:</strong> {{ result.year }}</p>
+            {% endif %}
+          </div>
+
+          <div class="card-footer bg-transparent border-0 pt-0 pb-3 text-center">
+            {% if result.url %}
+              <a href="{{ result.url }}" target="_blank" class="btn btn-primary btn-sm">
+                <i class="bi bi-play-circle"></i> Movie Link
+              </a>
+            {% else %}
+              <button class="btn btn-secondary btn-sm" disabled>
+                <i class="bi bi-link-45deg"></i> No link
+              </button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% elif query %}
+    <p class="text-muted">We couldn't find a movie for <strong>{{ query }}</strong>.</p>
+  {% endif %}
+</div>
+{% endblock %}
