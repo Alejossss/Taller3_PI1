@@ -4,7 +4,7 @@ import io
 from collections import Counter
 import matplotlib.pyplot as plt
 from django.shortcuts import render
-
+from django.http import HttpResponse
 from django.db.models import Count
 
 from .models import Movie
