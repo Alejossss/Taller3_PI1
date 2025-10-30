@@ -15,9 +15,7 @@ from django.conf import settings
 load_dotenv(Path(settings.BASE_DIR) / "openAI.env")
 
 # ✅ Initialize the OpenAI client with the API key
-client = OpenAI(
-    api_key=os.environ.get('OPENAI_API_KEY'),
-)
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def _cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
     # Asegura 1D float32
